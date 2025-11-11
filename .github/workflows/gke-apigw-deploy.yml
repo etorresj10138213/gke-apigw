@@ -1,4 +1,4 @@
-name: 'Terraform GKE ApiGw Deploy'
+name: 'Terraform ApiGw Deploy'
 on:
   push:
     branches:
