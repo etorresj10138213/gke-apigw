@@ -19,7 +19,7 @@ variable "network_name" {
 variable "cluster_name" {
   description = "Nombre del clúster GKE Autopilot"
   type        = string
-  default     = "gke-auto-consalud-apigw"
+  default     = "gke-consalud-auto-apigw"
 }
 
 variable "subnet_cidr" {

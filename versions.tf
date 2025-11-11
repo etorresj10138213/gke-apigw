@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket = "tf-bucket-consalud"
+    bucket = "consalud-terraform-bucket"
     prefix = "gke-apigw/dev"
   }
   required_version = ">= 1.5.0" # Asegura la compatibilidad con tu versión de GitHub Actions

@@ -4,7 +4,7 @@ on:
     branches:
       - main
     paths:
-      - 'gkecluster.tf' 
+      - 'main.tf' 
       - '.github/workflows/gke-apigw-deploy.yml'
 env:
   TF_ROOT: './'
