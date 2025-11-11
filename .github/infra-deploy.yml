@@ -1,0 +1,45 @@
+name: 'Terraform GKE Deploy'
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'gkecluster.tf' 
+      - '.github/workflows/gke-deploy.yml'
+env:
+  TF_ROOT: './'
+  TF_FILE: 'main.tf'
+  TERRAFORM_VERSION: '1.7.0'
+jobs:
+  terraform:
+    name: 'Terraform Infrastructe'
+    runs-on: ubuntu-latest
+    environment: development 
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+      - name: Terraform Init
+        id: init
+        run: terraform init
+        working-directory: ${{ env.TF_ROOT }}
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate
+        working-directory: ${{ env.TF_ROOT }}
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -input=false -out=tfplan -var "gcp_project=${{ secrets.GCP_PROJECT_ID }}"
+        working-directory: ${{ env.TF_ROOT }}
+        continue-on-error: true
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: terraform apply -auto-approve tfplan
+        working-directory: ${{ env.TF_ROOT }}
