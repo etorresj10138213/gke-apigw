@@ -15,3 +15,4 @@ provider "google" {
   region = "us-east1" 
   zone   = "us-esast1-a"
 }
+
