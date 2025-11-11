@@ -10,6 +10,12 @@ variable "region" {
   default     = "us-east1"
 }
 
+variable "gcp_project" {
+  description = "El ID de tu proyecto de GCP"
+  type        = string
+  default = "consalud-dev"
+}
+
 variable "network_name" {
   description = "Nombre base para los recursos de red"
   type        = string
