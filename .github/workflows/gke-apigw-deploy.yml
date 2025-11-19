@@ -35,7 +35,7 @@ jobs:
         run: terraform validate
         working-directory: ${{ env.TF_ROOT }}
       - name: Terraform Move Plan
-        id: validate
+        id: move
         run: terraform state mv 'google_container_cluster.autopilot_cluster' 'google_container_cluster.standard_cluster'
         working-directory: ${{ env.TF_ROOT }}
       - name: Terraform Plan
