@@ -77,7 +77,7 @@ resource "google_container_node_pool" "primary_node_pool" {
   name       = "${var.cluster_name}-pool-01"
   location   = var.region
   cluster    = google_container_cluster.standard_cluster.name
-  node_count = 3 # Número inicial de nodos
+  node_count = 1 # Número inicial de nodos
   
   node_config {
     machine_type = "e2-medium" # Tipo de máquina para los nodos
