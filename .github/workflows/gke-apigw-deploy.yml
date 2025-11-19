@@ -36,7 +36,7 @@ jobs:
         working-directory: ${{ env.TF_ROOT }}
       - name: Terraform Unlock Plan
         id: unlock
-        run: terraform force-unlock 1763560149459078
+        run: terraform force-unlock 1763560149459078 -auto-approve
         working-directory: ${{ env.TF_ROOT }}
       - name: Terraform Move Plan
         id: move
