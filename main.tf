@@ -49,7 +49,7 @@ resource "google_container_cluster" "standard_cluster" {
   subnetwork         = google_compute_subnetwork.subnet_kubernetes.name
   
   # *** CAMBIO CLAVE 2: Eliminar 'enable_autopilot = true' y el bloque de nodo por defecto ***
-  
+  initial_node_count = 0
   # Habilita el modo VPC-nativo (requerido)
   ip_allocation_policy {
     cluster_secondary_range_name = google_compute_subnetwork.subnet_kubernetes.secondary_ip_range[0].range_name # Pods

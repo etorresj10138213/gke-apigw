@@ -34,10 +34,6 @@ jobs:
         id: validate
         run: terraform validate
         working-directory: ${{ env.TF_ROOT }}
-      - name: Terraform Move Plan
-        id: move
-        run: terraform state mv 'google_container_cluster.autopilot_cluster' 'google_container_cluster.standard_cluster'
-        working-directory: ${{ env.TF_ROOT }}
       - name: Terraform Plan
         id: plan
         run: terraform plan -input=false -out=tfplan -var "gcp_project=${{ secrets.GCP_PROJECT_ID }}"
