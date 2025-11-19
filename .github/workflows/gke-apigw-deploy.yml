@@ -34,9 +34,13 @@ jobs:
         id: validate
         run: terraform validate
         working-directory: ${{ env.TF_ROOT }}
+      - name: Terraform Unlock Plan
+        id: unlock
+        run: terraform force-unlock 1763560149459078
+        working-directory: ${{ env.TF_ROOT }}
       - name: Terraform Move Plan
         id: move
-        run: terraform state mv 'google_container_cluster.autopilot_cluster' 'google_container_cluster.standard_cluster' -lock=false
+        run: terraform state mv 'google_container_cluster.autopilot_cluster' 'google_container_cluster.standard_cluster'
         working-directory: ${{ env.TF_ROOT }}
       - name: Terraform Plan
         id: plan
